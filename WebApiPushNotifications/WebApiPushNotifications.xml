@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApiPushNotifications</name>
+    </assembly>
+    <members>
+        <member name="M:WebApiPushNotifications.Abstractions.INotificationService.IsSupportedByBrowserAsync">
+            <summary>
+            Checks if the Notifications' API is Support by the browser.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Abstractions.INotificationService.RequestPermissionAsync">
+            <summary>
+            Request the user for his permission to send notifications.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Abstractions.INotificationService.CreateAsync(System.String,WebApiPushNotifications.Shared.NotificationOptions)">
+            <summary>
+            Create a Notification with <seealso cref="T:WebApiPushNotifications.Shared.NotificationOptions"/>
+            </summary>
+            <param name="title"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetPublicKey">
+            <summary>
+            Api GET api-webpush/public-key
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetNotifications" -->
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetNotificationById(System.Int32)">
+            <summary>
+            Api GET api-webpush/notifications/{notificationId}
+            </summary>
+            <param name="notificationId"></param>
+            <returns>PushNotificationUser</returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.InsertSubscription(WebApiPushNotifications.Shared.ApiWebPushSubscription)">
+            <summary>
+            Api POST api-webpush/subscriptions/insert
+            </summary>
+            <param name="ApiWebPushSubscription->subscription->subscription"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.RemoveSubscription(System.String)">
+            <summary>
+            Api DELETE api-webpush/subscriptions/remove?endpoint={endpoint}
+            </summary>
+            <param name="endpoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.SendWebPushNotification(WebApiPushNotifications.Shared.WebPushNotificationMessages)">
+            <summary>
+            Api POST api-webpush/notifications/SendWebPushNotification
+            </summary>
+            <param name="WebPushNotificationMessages->message->message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.InsertNotification(WebApiPushNotifications.Shared.PushNotificationUser)">
+            <summary>
+            Api POST api-webpush/notifications/insert
+            </summary>
+            <param name="notification"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.RemoveSubscription(System.Int32)">
+            <summary>
+            Api DELETE api-webpush/notifications/remove?{notificationId:int}
+            </summary>
+            <param name="notificationId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.InsertPushMessageTemplate(WebApiPushNotifications.Shared.PushNotificationMessagesTemplate)">
+            <summary>
+            Api POST api-webpush/pushmessage-template/insert
+            </summary>
+            <param name="message"></param>
+            <returns></returns>    
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.RemovePushMessageTemplate(System.Int32)">
+            <summary>
+            Api DELETE api-webpush/pushmessage-template/remove/{messageId:int}
+            </summary>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.InsertPushTopics(WebApiPushNotifications.Shared.PushSubscriptionTopic)">
+            <summary>
+            Api POST api-webpush/subcriptions-topic/insert
+            </summary>
+            <param name="topic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.RemovePushTopic(System.Int32)">
+            <summary>
+            Api DELETE api-webpush/notifications/remove?{notificationId}
+            </summary>
+            <param name="topicId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetTopics">
+            <summary>
+            Api GET api-webpush/subcriptions-topic/topics
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetSubscriptions">
+            <summary>
+            Api GET api-webpush/subscriptions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetSubscriptionsByEndpoint(System.String)">
+            <summary>
+            Api GET api-webpush/subscriptions/{endpoint}
+            </summary>
+            <param name="endpoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetPushMessagesTemplate">
+            <summary>
+            Api GET api-webpush/pushmessage-template/messages 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetPushMessageTemplateById(System.Int32)">
+            <summary>
+            Api GET api-webpush/pushmessage-template/message/{messageId:int}
+            </summary>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.InsertSubscriptionsAsync(WebApiPushNotifications.Shared.PushSubscriptionUser)">
+            <summary>
+            Inserimento sottiscrizione nel database
+            </summary>
+            <param name="subscription"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.RemoveSubscriptionAsync(System.String)">
+            <summary>
+            Eliminazione della sottoscrizione dal database
+            </summary>
+            <param name="endpoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.GetSubscriptionAsync">
+            <summary>
+            Restuisce tutte le sottoscrizioni dal database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.GetSubscriptionByEndpointAsync(System.String)">
+            <summary>
+            Restituisce una sottoscrizione in base all'endpoint
+            </summary>
+            <param name="endpoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.GetSubscriptionByIdAsync(System.Int32)">
+            <summary>
+            Restituisce una sottoscrizione inn base all'id salvata sul database
+            </summary>
+            <param name="subscriptionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.ForEachSubscriptionAsync(System.Action{WebApiPushNotifications.Shared.PushSubscriptionUser})">
+            <summary>
+            esegue una azione su tutti i record che sono stati recuperati dal database
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.InsertNotificationAsync(WebApiPushNotifications.Shared.PushNotificationUser)">
+            <summary>
+            Inserisce una notifica sul database
+            </summary>
+            <param name="notification"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.RemoveNotificationAsync(System.Int32)">
+            <summary>
+            Elimina una notifica dal database
+            </summary>
+            <param name="notificationId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.GetNotificationsAsync">
+            <summary>
+            Restitisce tutte le notifiche dal database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.GetNotificationsByTopicAsync(System.String)">
+            <summary>
+            Restituisce tutte le notifiche che risultano dalla ricerca per Topic
+            </summary>
+            <param name="topic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.GetNotificationByIdAsync(System.Int32)">
+            <summary>
+            Restituisce una sola notificain base all'Id salvato nel database
+            </summary>
+            <param name="notificationId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.GetMessagesTemplateAsync">
+            <summary>
+            Restituisce tutti i messaggi Template dal database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.GetMessageTemplateByIdAsync(System.Int32)">
+            <summary>
+            Restituisce un messaggio in base all'Id salavato nel database
+            </summary>
+            <param name="messageid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.GetTopicsAsync">
+            <summary>
+            Restituisce Tutti i topics utili alle sottoscrizioni
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.InsertTopicAsync(WebApiPushNotifications.Shared.PushSubscriptionTopic)">
+            <summary>
+            Inserimento Topic nel database
+            </summary>
+            <param name="topic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.RemoveTopicAsync(System.Int32)">
+            <summary>
+            Elimina un topic dal database
+            </summary>
+            <param name="topicid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.InsertMessageTemplateAsync(WebApiPushNotifications.Shared.PushNotificationMessagesTemplate)">
+            <summary>
+            Inserisce un messaggio template nel database
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiPushNotifications.Store.SQLServer.SQLServerStore.RemoveMessageTemplateAsync(System.Int32)">
+            <summary>
+            Elimina un messaggio template dal database
+            </summary>
+            <param name="messagid"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
