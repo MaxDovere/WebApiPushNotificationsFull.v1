@@ -26,109 +26,109 @@
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetPublicKey">
             <summary>
-            Api GET api-webpush/public-key
+            Api GET api/pushnotifications/public-key
             </summary>
             <returns></returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetNotifications" -->
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetNotificationById(System.Int32)">
             <summary>
-            Api GET api-webpush/notifications/{notificationId}
+            Api GET api/pushnotifications/notifications/{notificationId}
             </summary>
             <param name="notificationId"></param>
             <returns>PushNotificationUser</returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.InsertSubscription(WebApiPushNotifications.Shared.ApiWebPushSubscription)">
             <summary>
-            Api POST api-webpush/subscriptions/insert
+            Api POST api/pushnotifications/subscriptions/insert
             </summary>
             <param name="ApiWebPushSubscription->subscription->subscription"></param>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.RemoveSubscription(System.String)">
             <summary>
-            Api DELETE api-webpush/subscriptions/remove?endpoint={endpoint}
+            Api DELETE api/pushnotifications/subscriptions/remove?endpoint={endpoint}
             </summary>
             <param name="endpoint"></param>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.SendWebPushNotification(WebApiPushNotifications.Shared.WebPushNotificationMessages)">
             <summary>
-            Api POST api-webpush/notifications/SendWebPushNotification
+            Api POST api/pushnotifications/notifications/SendWebPushNotification
             </summary>
             <param name="WebPushNotificationMessages->message->message"></param>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.InsertNotification(WebApiPushNotifications.Shared.PushNotificationUser)">
             <summary>
-            Api POST api-webpush/notifications/insert
+            Api POST api/pushnotifications/notifications/insert
             </summary>
             <param name="notification"></param>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.RemoveSubscription(System.Int32)">
             <summary>
-            Api DELETE api-webpush/notifications/remove?{notificationId:int}
+            Api DELETE api/pushnotifications/notifications/remove?{notificationId:int}
             </summary>
             <param name="notificationId"></param>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.InsertPushMessageTemplate(WebApiPushNotifications.Shared.PushNotificationMessagesTemplate)">
             <summary>
-            Api POST api-webpush/pushmessage-template/insert
+            Api POST api/pushnotifications/pushmessage-template/insert
             </summary>
             <param name="message"></param>
             <returns></returns>    
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.RemovePushMessageTemplate(System.Int32)">
             <summary>
-            Api DELETE api-webpush/pushmessage-template/remove/{messageId:int}
+            Api DELETE api/pushnotifications/pushmessage-template/remove/{messageId:int}
             </summary>
             <param name="messageId"></param>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.InsertPushTopics(WebApiPushNotifications.Shared.PushSubscriptionTopic)">
             <summary>
-            Api POST api-webpush/subcriptions-topic/insert
+            Api POST api/pushnotifications/subcriptions-topic/insert
             </summary>
             <param name="topic"></param>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.RemovePushTopic(System.Int32)">
             <summary>
-            Api DELETE api-webpush/notifications/remove?{notificationId}
+            Api DELETE api/pushnotifications/notifications/remove?{notificationId}
             </summary>
             <param name="topicId"></param>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetTopics">
             <summary>
-            Api GET api-webpush/subcriptions-topic/topics
+            Api GET api/pushnotifications/subcriptions-topic/topics
             </summary>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetSubscriptions">
             <summary>
-            Api GET api-webpush/subscriptions
+            Api GET api/pushnotifications/subscriptions
             </summary>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetSubscriptionsByEndpoint(System.String)">
             <summary>
-            Api GET api-webpush/subscriptions/{endpoint}
+            Api GET api/pushnotifications/subscriptions/{endpoint}
             </summary>
             <param name="endpoint"></param>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetPushMessagesTemplate">
             <summary>
-            Api GET api-webpush/pushmessage-template/messages 
+            Api GET api/pushnotifications/pushmessage-template/messages 
             </summary>
             <returns></returns>
         </member>
         <member name="M:WebApiPushNotifications.Controllers.ApiPushNotificationsController.GetPushMessageTemplateById(System.Int32)">
             <summary>
-            Api GET api-webpush/pushmessage-template/message/{messageId:int}
+            Api GET api/pushnotifications/pushmessage-template/message/{messageId:int}
             </summary>
             <param name="messageId"></param>
             <returns></returns>

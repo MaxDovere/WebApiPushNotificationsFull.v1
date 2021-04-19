@@ -62,24 +62,19 @@ namespace WebApiPushNotifications
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSwagger();
-#if DEBUG
-            // For Debug in Kestrel (IISEXpress)
-            //app.UseSwaggerUI(c => c.SwaggerEndpoint("/api-webpush/swagger/v2/swagger.json", "WebApiPushNotifications v2"));
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v2/swagger.json", "WebApiPushNotifications v2"));
-#else
-            // To deploy on IIS
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/api-webpush/swagger/v1/swagger.json", "WebApiPushNotifications v1"));
-#endif
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                // For Debug in Kestrel (IISEXpress)
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v2/swagger.json", "WebApiPushNotifications v2"));
             }
             else
             {
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/services-web/api/swagger/v2/swagger.json", "WebApiPushNotifications v2"));
 
             }
 
@@ -107,10 +102,10 @@ namespace WebApiPushNotifications
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllers();
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "api-webpush");
+                endpoints.MapControllers();
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "api-webpush");
             });
         }
     }

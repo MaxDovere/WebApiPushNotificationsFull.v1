@@ -10,7 +10,7 @@ using WebApiIdentityServer.Shared.Models;
 namespace WebApiPushNotifications.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class AuthController : ControllerBase
     {
 

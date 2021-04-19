@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WebApiPushNotifications.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class MeController : ControllerBase
     {

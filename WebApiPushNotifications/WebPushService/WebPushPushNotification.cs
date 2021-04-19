@@ -46,7 +46,7 @@ namespace WebApiPushNotifications.WebPushService
         {
 
             var vapidDetails = new VapidDetails(this._options.Subject, this._options.PublicKey, this._options.PrivateKey);
-            var pushSubscription = new WebPush.PushSubscription(subscription.Endpoint, subscription.P256DH, subscription.Auth);
+            PushSubscription pushSubscription = new WebPush.PushSubscription(subscription.Endpoint, subscription.P256DH, subscription.Auth);
             //var payload = System.Text.Json.JsonSerializer.Serialize(message);
             var settings = new JsonSerializerSettings();
             settings.ContractResolver = new DefaultContractResolver { NamingStrategy = new JsonLowerCaseNamingStrategy() }; ;
@@ -61,7 +61,8 @@ namespace WebApiPushNotifications.WebPushService
                 {
                     using (IStoreRepositoryAccessor pushstoreAccessor = _pushStoreAccessorProvider.GetStoreRepositoryAccessor())
                     {
-                        await pushstoreAccessor.StoreRepository.RemoveSubscriptionByEndpointAsync(subscription.Endpoint);
+                        subscription.DateEndTime = DateTime.Now;
+                        await pushstoreAccessor.StoreRepository.UpdateSubscriptionAsync(subscription);
                     }
                     _logger?.LogInformation("Subscription has expired or is no longer valid and has been removed.");
                 }

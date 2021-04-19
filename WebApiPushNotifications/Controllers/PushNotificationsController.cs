@@ -18,18 +18,19 @@ using WebApiPushNotifications.Repository;
 namespace WebApiPushNotifications.Controllers
 {
     //[Authorize]
-    [Route("api-webpush")]
+    //[Route("api-webpush")]
+    [Route("[controller]")]
     [ApiController]
-    public class ApiPushNotificationsController : ControllerBase, IApiPushNotifications
+    public class PushNotificationsController : ControllerBase, IApiPushNotifications
     {
-        private readonly ILogger<ApiPushNotificationsController> _logger;
+        private readonly ILogger<PushNotificationsController> _logger;
         private readonly WebPushNotificationConfig _configuration;
         //private readonly IWebPushStore _pushstore;
         private readonly IWebPushService _pushservice;
         private readonly IWebPushMessagesQueue _pushmessagesqueue;
         private readonly ISqlServerStoreRepository _storeRepository;
 
-        public ApiPushNotificationsController(IOptions<WebPushNotificationConfig> configuration, ISqlServerStoreRepository storeRepository, IWebPushService pushservice, IWebPushMessagesQueue pushmessagesqueue, ILogger<ApiPushNotificationsController> logger)
+        public PushNotificationsController(IOptions<WebPushNotificationConfig> configuration, ISqlServerStoreRepository storeRepository, IWebPushService pushservice, IWebPushMessagesQueue pushmessagesqueue, ILogger<PushNotificationsController> logger)
         {
             this._logger = logger;
             this._configuration = configuration.Value;
@@ -59,7 +60,7 @@ namespace WebApiPushNotifications.Controllers
             }
         }
         /// <summary>
-        /// Api GET api-webpush/public-key
+        /// Api GET api/pushnotifications/public-key
         /// </summary>
         /// <returns></returns>
         [HttpGet("public-key")]
@@ -68,7 +69,7 @@ namespace WebApiPushNotifications.Controllers
             return Content(_pushservice.PublicKey, "text/plain");
         }
         /// <summary>
-        /// Api POST api-webpush/subscriptions/insert
+        /// Api POST api/pushnotifications/subscriptions/insert
         /// </summary>
         /// <param name="ApiWebPushSubscription->subscription"></param>
         /// <returns></returns>
@@ -96,11 +97,11 @@ namespace WebApiPushNotifications.Controllers
             }
         }
         /// <summary>
-        /// Api DELETE api-webpush/subscriptions/remove?endpoint={endpoint}
+        /// Api DELETE api/pushnotifications/subscriptions/remove?endpoint={endpoint}
         /// </summary>
         /// <param name="endpoint"></param>
         /// <returns></returns>
-        [HttpDelete("subscriptions/remove/{endpoint}")]
+        [HttpDelete("subscriptions/remove")]
         public async Task<IActionResult> RemoveSubscriptionByEndpoint(string endpoint)
         {
             await _storeRepository.RemoveSubscriptionByEndpointAsync(endpoint);
@@ -119,7 +120,7 @@ namespace WebApiPushNotifications.Controllers
             return Ok();
         }
         /// <summary>
-        /// Api POST api-webpush/notifications/SendWebPushNotification
+        /// Api POST api/pushnotifications/notifications/SendWebPushNotification
         /// </summary>
         /// <param name="WebPushNotificationMessages->message"></param>
         /// <returns></returns>
@@ -137,7 +138,7 @@ namespace WebApiPushNotifications.Controllers
             }
         }
         /// <summary>
-        /// Api GET api-webpush/notifications
+        /// Api GET api/pushnotifications/notifications
         /// </summary>
         /// <returns>List<PushNotificationUser></returns>
         [HttpGet("notifications")]
@@ -151,7 +152,7 @@ namespace WebApiPushNotifications.Controllers
             //.Select(o => PushNotificationWithStatus.FromExecute(o)).ToList();
         }
         /// <summary>
-        /// Api GET api-webpush/notifications/{notificationId}
+        /// Api GET api/pushnotifications/notifications/{notificationId}
         /// </summary>
         /// <param name="notificationId"></param>
         /// <returns>PushNotificationUser</returns>
@@ -170,7 +171,7 @@ namespace WebApiPushNotifications.Controllers
             return notification; // PushNotificationWithStatus.FromExecute(notification);
         }
         /// <summary>
-        /// Api POST api-webpush/notifications/insert
+        /// Api POST api/pushnotifications/notifications/insert
         /// </summary>
         /// <param name="notification"></param>
         /// <returns></returns>
@@ -191,11 +192,11 @@ namespace WebApiPushNotifications.Controllers
             //return NoContent();
         }
         /// <summary>
-        /// Api DELETE api-webpush/notifications/remove?{notificationId:int}
+        /// Api DELETE api/pushnotifications/notifications/remove?{notificationId:int}
         /// </summary>
         /// <param name="notificationId"></param>
         /// <returns></returns>
-        [HttpDelete("notifications/remove/{notificationId:int}")]
+        [HttpDelete("notifications/remove")]
         public async Task<IActionResult> RemoveNotification(int notificationId)
         {
             PushNotificationUser notification = await _storeRepository.GetNotificationByIdAsync(notificationId);
@@ -208,7 +209,7 @@ namespace WebApiPushNotifications.Controllers
             return Ok();
         }
         /// <summary>
-        /// Api POST api-webpush/pushmessage-template/insert
+        /// Api POST api/pushnotifications/pushmessage-template/insert
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>    
@@ -226,11 +227,11 @@ namespace WebApiPushNotifications.Controllers
             }
         }
         /// <summary>
-        /// Api DELETE api-webpush/pushmessage-template/remove/{messageId:int}
+        /// Api DELETE api/pushnotifications/pushmessage-template/remove/{messageId:int}
         /// </summary>
         /// <param name="messageId"></param>
         /// <returns></returns>
-        [HttpDelete("pushmessage-template/remove/{messageId:int}")]
+        [HttpDelete("pushmessage-template/remove")]
         public async Task<IActionResult> RemovePushMessageTemplate(int messageId)
         {
             PushNotificationMessagesTemplate message = await _storeRepository.GetMessageTemplateByIdAsync(messageId);
@@ -242,7 +243,7 @@ namespace WebApiPushNotifications.Controllers
             return Ok();
         }
         /// <summary>
-        /// Api POST api-webpush/subcriptions-topic/insert
+        /// Api POST api/pushnotifications/subcriptions-topic/insert
         /// </summary>
         /// <param name="topic"></param>
         /// <returns></returns>
@@ -260,11 +261,11 @@ namespace WebApiPushNotifications.Controllers
             }
         }
         /// <summary>
-        /// Api DELETE api-webpush/pushtopic/remove?{topicId}
+        /// Api DELETE api/pushnotifications/pushtopic/remove?{topicId}
         /// </summary>
         /// <param name="topicId"></param>
         /// <returns></returns>
-        [HttpDelete("subscriptions-topic/remove/{topicId:int}")]
+        [HttpDelete("subscriptions-topic/remove")]
         public async Task<IActionResult> RemovePushTopic(int topicId)
         {
             PushSubscriptionTopic topic = await _storeRepository.GetSubscriptionTopicsByIdAsync(topicId);
@@ -276,7 +277,7 @@ namespace WebApiPushNotifications.Controllers
             return Ok();
         }
         /// <summary>
-        /// Api GET api-webpush/subcriptions-topic/topics
+        /// Api GET api/pushnotifications/subcriptions-topic/topics
         /// </summary>
         /// <returns></returns>
         [HttpGet("subscriptions-topic/topics")]
@@ -285,7 +286,7 @@ namespace WebApiPushNotifications.Controllers
             return await _storeRepository.GetSubscriptionTopicsAsync();
         }
         /// <summary>
-        /// Api GET api-webpush/subscriptions
+        /// Api GET api/pushnotifications/subscriptions
         /// </summary>
         /// <returns></returns>
         [HttpGet("subscriptions")]
@@ -294,7 +295,7 @@ namespace WebApiPushNotifications.Controllers
             return await _storeRepository.GetSubscriptionsAsync();
         }
         /// <summary>
-        /// Api GET api-webpush/subscriptions/{endpoint}
+        /// Api GET api/pushnotifications/subscriptions/{endpoint}
         /// </summary>
         /// <param name="endpoint"></param>
         /// <returns></returns>
@@ -304,7 +305,7 @@ namespace WebApiPushNotifications.Controllers
             return await _storeRepository.GetSubscriptionByEndpointAsync(endpoint);
         }
         /// <summary>
-        /// Api GET api-webpush/pushmessage-template/messages 
+        /// Api GET api/pushnotifications/pushmessage-template/messages 
         /// </summary>
         /// <returns></returns>
         [HttpGet("pushmessage-template/messages")]
@@ -313,7 +314,7 @@ namespace WebApiPushNotifications.Controllers
             return await _storeRepository.GetMessagesTemplateAsync();
         }
         /// <summary>
-        /// Api GET api-webpush/pushmessage-template/message/{messageId:int}
+        /// Api GET api/pushnotifications/pushmessage-template/message/{messageId:int}
         /// </summary>
         /// <param name="messageId"></param>
         /// <returns></returns>

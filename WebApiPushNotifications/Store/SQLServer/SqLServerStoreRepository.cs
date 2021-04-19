@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using WebApiPushNotifications.Repository;
 using WebApiPushNotifications.Shared;
 
@@ -71,8 +72,12 @@ namespace WebApiPushNotifications.Store.SQLServer
 
         public async Task RemoveSubscriptionByEndpointAsync(string endpoint)
         {
+            string endpointURI = endpoint.Replace("%2F", @"/");// HttpUtility.UrlDecode(endpoint);
+
+
+
             PushSubscriptionUser subscription = await _context.PushSubscriptionUser
-                .Where(o => o.Endpoint == endpoint)
+                .Where(o => o.Endpoint == endpointURI)
                 .FirstOrDefaultAsync();
             
             await _subscriptionsStore.Delete(subscription);
@@ -124,7 +129,12 @@ namespace WebApiPushNotifications.Store.SQLServer
         }
         public Task ForEachSubscriptionAsync(Action<PushSubscriptionUser> action, CancellationToken cancellationToken)
         {
-            return _context.PushSubscriptionUser.AsNoTracking().ForEachAsync(action, cancellationToken);
+            //var list = _context.PushSubscriptionUser.Where(a => a.DateEndTime.Year == 0001).ToList();
+
+            return _context.PushSubscriptionUser
+                .Where(a => a.DateEndTime.Year == 0001)
+                .AsNoTracking()
+                .ForEachAsync(action, cancellationToken);
         }
     }
 }
